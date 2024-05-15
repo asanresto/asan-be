@@ -1,0 +1,13 @@
+input FieldFilterInput @filter {
+  eq: Any
+  ne: Any
+  in: Any
+  notIn: Any
+  exists: Any
+  like: Any
+  contains: Any
+  gt: Any
+  gte: Any
+  lt: Any
+  lte: Any
+}

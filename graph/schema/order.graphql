@@ -1,0 +1,44 @@
+type Order {
+  id: ID!
+  createdBy: User!
+  items: [OrderItem!]!
+  total: Float!
+}
+
+type OrderItem {
+  id: ID!
+  user: User!
+  product: Product!
+  quantity: Int!
+  subtotal: Float!
+  note: String
+}
+
+input NewOrderItem {
+  userId: ID!
+  productId: ID!
+  quantity: Int!
+  note: String
+}
+
+input NewOrder {
+  name: String!
+  items: [NewOrderItem!]!
+}
+
+input OrderFilterInput {
+  id: FieldFilterInput
+  total: FieldFilterInput
+}
+
+input OrderAndInput {
+  and: [OrderFilterInput]
+}
+
+input OrderOrInput {
+  or: [OrderAndInput]
+}
+
+input OrderFiltersInput {
+  where: [OrderOrInput]
+}

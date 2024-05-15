@@ -1,0 +1,94 @@
+directive @length(
+  min: Int
+  max: Int
+) on INPUT_FIELD_DEFINITION | ARGUMENT_DEFINITION
+
+directive @filter on INPUT_OBJECT
+
+scalar Upload
+
+scalar Time
+
+scalar Any
+
+type Message {
+  id: ID!
+  content: String!
+  senderId: String
+  createdAt: Int
+}
+
+input LoginPayload {
+  email: String!
+  password: String!
+}
+
+input SignUpPayload {
+  email: String! @length(max: 2)
+  password: String!
+  confirmPassword: String!
+}
+
+input ChangePasswordPayload {
+  currentPassword: String! @length(max: 1)
+  newPassword: String!
+  confirmPassword: String!
+}
+
+type AuthResponse {
+  accessToken: String!
+  refreshToken: String!
+  accessTokenTtl: Int!
+  refreshTokenTtl: Int!
+}
+
+type ChatRoom {
+  id: ID!
+}
+
+type Media {
+  id: ID!
+  alt: String
+  url: String
+}
+
+type Query {
+  products(
+    filter: ProductFiltersInput
+    search: String
+    page: Int
+    limit: Int
+    sort: String
+  ): PaginatedProducts
+  users: [User!]!
+  me: User
+  messages(roomId: String!): [Message!]!
+  chatRooms: [ChatRoom!]!
+}
+
+type Mutation {
+  createProduct(input: NewProduct!): Product!
+  createOrder(input: NewOrder!): Order!
+  login(email: String!, password: String!): AuthResponse!
+  signUp(input: SignUpPayload!): Boolean!
+  forgotPassword(email: String!): Boolean!
+  resetPassword(
+    resetPasswordToken: String!
+    newPassword: String!
+    confirmPassword: String!
+  ): Boolean!
+  refreshToken(refreshToken: String): AuthResponse!
+  logOut(refreshToken: String): Boolean!
+  updateAccount(avatar: Upload, name: String): Boolean!
+  sendChatMessage(message: String!, roomId: String!): Boolean!
+  createChatRoom(userIds: [String!]!): Boolean!
+  changePassword(
+    currentPassword: String! @length(max: 1)
+    newPassword: String!
+    confirmPassword: String!
+  ): Boolean!
+}
+
+type Subscription {
+  message: Message!
+}

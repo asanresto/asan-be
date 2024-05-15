@@ -1,0 +1,1 @@
+CREATE INDEX IF NOT EXISTS room_id_on_user_chat_rooms_idx ON user_chat_rooms(room_id);

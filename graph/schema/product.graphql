@@ -1,0 +1,43 @@
+type Product {
+  id: ID!
+  name: String!
+  price: Float!
+  description: String
+  status: String
+  createdAt: Time
+  updatedAt: Time
+}
+
+type PaginatedProducts {
+  items: [Product]
+  count: Int
+  page: Int
+  limit: Int
+}
+
+input NewProduct {
+  name: String!
+  price: Float!
+  description: String
+  images: [Upload]
+}
+
+input ProductFilterInput {
+  id: FieldFilterInput
+  name: FieldFilterInput
+  price: FieldFilterInput
+  description: FieldFilterInput
+  createdAt: FieldFilterInput
+}
+
+input ProductAndInput {
+  and: [ProductFilterInput]
+}
+
+input ProductOrInput {
+  or: [ProductAndInput]
+}
+
+input ProductFiltersInput {
+  where: ProductOrInput
+}

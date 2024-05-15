@@ -1,0 +1,4 @@
+.env
+Makefile
+.vscode
+__debug_bin*

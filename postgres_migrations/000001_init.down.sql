@@ -1,0 +1,16 @@
+DROP TABLE IF EXISTS "role_permissions";
+DROP TABLE IF EXISTS "user_roles";
+DROP TABLE IF EXISTS "user_permissions";
+DROP TABLE IF EXISTS "roles";
+DROP TABLE IF EXISTS "permissions";
+DROP TABLE IF EXISTS "order_items";
+DROP TABLE IF EXISTS "orders";
+DROP TABLE IF EXISTS "stocks";
+DROP TABLE IF EXISTS "product_images";
+DROP TABLE IF EXISTS "products";
+DROP TABLE IF EXISTS "outlets";
+DROP TABLE IF EXISTS "refresh_tokens";
+DROP TABLE IF EXISTS "verification_tokens";
+DROP TABLE IF EXISTS "forgot_password_tokens";
+DROP TABLE IF EXISTS "users";
+DROP TYPE IF EXISTS "status";
